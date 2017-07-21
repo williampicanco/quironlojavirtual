@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarrinhoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\VitrineController.cs" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Carrinho\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quiron.LojaVirtual.Dominio\Quiron.LojaVirtual.Dominio.csproj">
