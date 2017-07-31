@@ -20,7 +20,7 @@
     <!-- <input id="textNome" style="max-width:900px;" class="form-control" placeholder="Digite seu Nome..." type="text">-->
     <div class="form-group">
         <label>Nome do cliente:</label>
-        @Html.TextBoxFor(x => x.NomeCliente, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.NomeCliente, new { @class = "form-control", style = "max-width:900px;" })
         
     </div>
 
@@ -36,8 +36,8 @@
                     @(property.DisplayName ?? property.PropertyName)
                 </label>
 
-                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-
+                @Html.TextBox(property.PropertyName, null, new { @class = "form-control", style = "max-width:900px;" } )
+                @*<input style="max-width:900px;" class="form-control" placeholder="Digite seu Nome..." type="text">*@
             </div>
         }
     }
@@ -57,3 +57,31 @@
 
 }
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+
+    $('#Cep').change(function (e)
+    {
+        e.preventDefault();
+
+        $("#Endereco").val('');
+        $("#Bairro").val('');
+        $("#Cidade").val('');
+        $("#Estado").val('');
+
+        var cep = $('#Cep').val().replace("-", "");
+
+        $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function (data) {
+        
+            if (data.resultado_txt == 'sucesso - cep completo') {
+
+                $("#Endereco").val(data.tipo_logradouro + ' ' + data.logradouro);
+                $("#Bairro").val(data.bairro);
+                $("#Cidade").val(data.cidade);
+                $("#Estado").val(data.uf);
+            }
+        });
+
+     });
+</script>
