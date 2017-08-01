@@ -17,16 +17,16 @@
     @Html.ValidationSummary()
 
     <h3>Enviar para</h3>
-    <!-- <input id="textNome" style="max-width:900px;" class="form-control" placeholder="Digite seu Nome..." type="text">-->
+    
     <div class="form-group">
         <label>Nome do cliente:</label>
-        @Html.TextBoxFor(x => x.NomeCliente, new { @class = "form-control", style = "max-width:900px;" })
-        
+        @Html.TextBoxFor(x => x.NomeCliente, new { @class = "form-control", style = "max-width:900px;" })                   
+        @Html.ValidationMessageFor(x => x.NomeCliente)
+
     </div>
 
     <h3>Dados para entrega</h3>
-
-
+    
     foreach (var property in ViewData.ModelMetadata.Properties)
     {
         if (property.PropertyName != "NomeCliente" && property.PropertyName != "EmbrulhaPresente")
@@ -37,7 +37,7 @@
                 </label>
 
                 @Html.TextBox(property.PropertyName, null, new { @class = "form-control", style = "max-width:900px;" } )
-                @*<input style="max-width:900px;" class="form-control" placeholder="Digite seu Nome..." type="text">*@
+             
             </div>
         }
     }
